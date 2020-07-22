@@ -50,6 +50,16 @@ main {
     margin: 10px auto;
 }
 
+main .products-container .products {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main .products-container .products .product {
+    width: 33.3333%;
+}
+
+
 footer {
     grid-area: footer;
     height: 80px;
