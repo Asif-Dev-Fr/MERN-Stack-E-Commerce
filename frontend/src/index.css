@@ -59,6 +59,7 @@ header .title button {
 
 .sidebar {
   position: fixed;
+  transition: all 0.5s;
   transform: translateX(-25rem);
   width: 25rem;
   background-color: #18bc9c;

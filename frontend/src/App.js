@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import data from './data';
 
 const App = () => {
 
@@ -45,77 +46,18 @@ const App = () => {
       <main>
         <div className="products-container">
           <ul className="products">
-
-            <li>
-              <div className="product">
-                <img src="pictures/Luffy.jpg" alt="product" />
-                <div className="product-name"><a href="product.html">Luffy Tshirt</a></div>
-                <div className="product-brand">One Piece</div>
-                <div className="product-price">60€</div>
-                <div className="product-rating">4.5 Stars (10 reviews)</div>
-              </div>
-            </li>
-
-            <li>
-              <div className="product">
-                <img src="pictures/Luffy.jpg" alt="product" />
-                <div className="product-name"><a href="product.html">HTML Course</a></div>
-                <div className="product-brand">Brand</div>
-                <div className="product-price">60€</div>
-                <div className="product-rating">4.5 Stars (10 reviews)</div>
-              </div>
-            </li>
-
-            <li>
-              <div className="product">
-                <img src="pictures/Luffy.jpg" alt="product" />
-                <div className="product-name"><a href="product.html">HTML Course</a></div>
-                <div className="product-brand">Brand</div>
-                <div className="product-price">60€</div>
-                <div className="product-rating">4.5 Stars (10 reviews)</div>
-              </div>
-            </li>
-
-            <li>
-              <div className="product">
-                <img src="pictures/Luffy.jpg" alt="product" />
-                <div className="product-name"><a href="product.html">HTML Course</a></div>
-                <div className="product-brand">Brand</div>
-                <div className="product-price">60€</div>
-                <div className="product-rating">4.5 Stars (10 reviews)</div>
-              </div>
-            </li>
-
-            <li>
-              <div className="product">
-                <img src="pictures/Luffy.jpg" alt="product" />
-                <div className="product-name"><a href="product.html">HTML Course</a></div>
-                <div className="product-brand">Brand</div>
-                <div className="product-price">60€</div>
-                <div className="product-rating">4.5 Stars (10 reviews)</div>
-              </div>
-            </li>
-
-            <li>
-              <div className="product">
-                <img src="pictures/Luffy.jpg" alt="product" />
-                <div className="product-name"><a href="product.html">HTML Course</a></div>
-                <div className="product-brand">Brand</div>
-                <div className="product-price">60€</div>
-                <div className="product-rating">4.5 Stars (10 reviews)</div>
-              </div>
-            </li>
-
-            <li>
-              <div className="product">
-                <img src="pictures/Luffy.jpg" alt="product" />
-                <div className="product-name"><a href="product.html">HTML Course</a></div>
-                <div className="product-brand">Brand</div>
-                <div className="product-price">60€</div>
-                <div className="product-rating">4.5 Stars (10 reviews)</div>
-              </div>
-            </li>
-
+            {
+              data.products.map(product=> 
+              <li>
+                <div className="product">
+                  <img src={product.image} alt={product.name} />
+                  <div className="product-name"><a href="product.html">{product.name}</a></div>
+                  <div className="product-brand">{product.brand}</div>
+                  <div className="product-price">{product.price}€</div>
+                  <div className="product-rating">{product.rating} stars ({product.numberReviews})</div>
+                </div>
+              </li>) 
+            }       
           </ul>
         </div>
       </main>
