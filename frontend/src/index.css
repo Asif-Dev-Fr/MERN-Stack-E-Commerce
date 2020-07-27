@@ -9,6 +9,10 @@ body {
   height: 100vh;
 }
 
+#root {
+  height: 100%;
+}
+
 .container {
   font-size: 1.6rem;
   display: grid;
@@ -35,6 +39,10 @@ header .title a {
   color: #FFF;
   text-decoration: none;
 
+}
+
+header .title a:hover {
+  color: #18bc9c;
 }
 
 header .log_cart a {
@@ -161,4 +169,30 @@ footer {
 
 footer p {
   font-size: 1.5rem;
+}
+
+/* Page Product */
+
+.product-page .details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.product-page .details .details-image img {
+  max-width: 30rem;
+}
+
+.product-page .details .details-image {
+  flex: 2 1 30rem;
+}
+
+.product-page .details .details-infos {
+  flex: 1 1 15rem;
+}
+
+.product-page .details .details-action {
+  flex: 1 1 15rem;
 }
