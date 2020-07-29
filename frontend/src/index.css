@@ -7,6 +7,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
+  font-size: 1.2rem;
 }
 
 #root {
@@ -14,7 +15,6 @@ body {
 }
 
 .container {
-  font-size: 1.6rem;
   display: grid;
   grid-template-areas: 'header' 'main' 'footer';
   grid-template-columns: 1fr;
@@ -178,7 +178,7 @@ footer p {
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  margin-top: 15px;
+  padding: 1rem;
 }
 
 .product-page .details .details-image img {
@@ -187,6 +187,7 @@ footer p {
 
 .product-page .details .details-image {
   flex: 2 1 30rem;
+  margin-left: 50px;
 }
 
 .product-page .details .details-infos {
@@ -195,4 +196,22 @@ footer p {
 
 .product-page .details .details-action {
   flex: 1 1 15rem;
+  border: .1rem solid #18bc9c;
+  border-radius: 0.5rem;
+  background-color: #F0F0F0;
+}
+
+.product-page .details .details-infos ul li, .product-page .details .details-action ul li {
+  list-style-type: none;
+  margin-bottom: 1rem;
+}
+
+.product-page .details .details-action ul li .buttonAddToCart {
+  display: block;
+  width: 85%;
+  cursor: pointer;
+}
+
+.product-page .details .details-action ul li .buttonAddToCart:hover {
+  background-color: #18bc9c;;
 }
