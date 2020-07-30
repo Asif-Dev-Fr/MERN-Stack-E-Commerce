@@ -1,23 +1,34 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { listProducts } from '../action/productAction';
 
 const HomeScreen = (props) => {
 
     const [results, setResults] = useState([]);
+    const resultList = useSelector(state => state.productList);  
+    const { productsFromRedux, loading, error } = resultList;
+    const dispatch = useDispatch();
 
     useEffect(() => {
+        /*
         const fetchData = async () => {
             const data = await axios.get('/api/products');
             console.log(data);
             setResults(data.data)
         }
-        fetchData()
+        fetchData(); */
+        // Avec redux :
+        dispatch(listProducts());
+
     }, []);
 
-    return <ul className="products">
+    return loading ? <div>Loading...</div> :
+    error? <div>{error}</div> :
+    <ul className="products">
             {
-            results.map(product=> 
+            productsFromRedux.map(product=> 
             <li key={product._id}>
                 <div className="product">
                     <Link to={`/product/${product._id}`}>
