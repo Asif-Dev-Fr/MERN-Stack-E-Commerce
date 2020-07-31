@@ -1,20 +1,37 @@
 import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL  } from '../constants/productConstants';
+import { PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL  } from '../constants/productConstants';
+
 
 function productListReducer(state = {productsFromRedux: []}, action) {
     switch (action.type) {
         case PRODUCT_LIST_REQUEST : 
             return {loading : true};
-        break;
+        
         case PRODUCT_LIST_SUCCESS :
             return {loading: false, productsFromRedux : action.payload};
-        break;
+        
         case PRODUCT_LIST_FAIL : 
             return {loading: false, error : action.payload};
-        break;
-
+        
         default:
             return state;
     }
 }
 
-export {productListReducer};
+function productDetailsReducer(state = {productDetailsFromRedux: {}}, action) {
+    switch (action.type) {
+        case PRODUCT_DETAILS_REQUEST : 
+            return {loading : true};
+        
+        case PRODUCT_DETAILS_SUCCESS :
+            return {loading: false, productDetailsFromRedux : action.payload};
+        
+        case PRODUCT_DETAILS_FAIL : 
+            return {loading: false, error : action.payload};
+        
+        default:
+            return state;
+    }
+}
+
+export {productListReducer, productDetailsReducer};

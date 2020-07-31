@@ -1,37 +1,46 @@
-import React from 'react';
-import data from '../data';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { detailsProduct } from '../action/productAction';
 
 const ProductScreen = ({match}) => {
-    //  console.log(match.params.id);
-    const product = data.products.find(value => value._id === match.params.id);
-    console.log(product);
+
+    const productDetails = useSelector(state =>state.productDetails);
+    const {productDetailsFromRedux, loading, error} = productDetails
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(detailsProduct(match.params.id));
+    }, [dispatch])
+
     return (
         <div className="product-page">
             <div className="back-to-result">
                 <div><Link to="/">Back to results</Link></div>
             </div>
-            <div className="details">
+            {loading ? <div>Loading ...</div>:
+            error ? <div>{error}</div> : 
+            (<div className="details">
 
                 <section className="details-image">
-                    <img src={product.image}  alt={product.name} /> 
+                    <img src={productDetailsFromRedux.image}  alt={productDetailsFromRedux.name} /> 
                 </section>
 
                 <section className="details-infos">
                     <ul>
                         <li>
-                            <h4>{product.name}</h4>
+                            <h4>{productDetailsFromRedux.name}</h4>
                         </li>
                         <li>
-                            {product.rating} Stars ({product.numberReviews} Reviews)
+                            {productDetailsFromRedux.rating} Stars ({productDetailsFromRedux.numberReviews} Reviews)
                         </li>
                         <li>
-                            Price : <b>{product.price}€</b>
+                            Price : <b>{productDetailsFromRedux.price}€</b>
                         </li>
                         <li>
                             Description : 
                             <p>
-                                {product.description}
+                                {productDetailsFromRedux.description}
                             </p>
                         </li>
                     </ul>
@@ -40,10 +49,10 @@ const ProductScreen = ({match}) => {
                 <section className="details-action">
                     <ul>
                         <li>
-                            Price : {product.price}
+                            Price : {productDetailsFromRedux.price}
                         </li>
                         <li>
-                            Status : {product.status}
+                            Status : {productDetailsFromRedux.status}
                         </li>
                         <li>
                             Quantity : <select>
@@ -61,7 +70,8 @@ const ProductScreen = ({match}) => {
                 </section>
 
                 
-            </div>
+            </div>)
+            };
     
          </div>
     )
