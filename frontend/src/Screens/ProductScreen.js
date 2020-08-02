@@ -1,17 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { detailsProduct } from '../action/productAction';
 
-const ProductScreen = ({match}) => {
-
+const ProductScreen = ({match, history}) => {
+     
+    const [qty, setQty] = useState(1);
     const productDetails = useSelector(state =>state.productDetails);
     const {productDetailsFromRedux, loading, error} = productDetails
     const dispatch = useDispatch();
+    const productId = match.params.id;
 
     useEffect(()=>{
-        dispatch(detailsProduct(match.params.id));
-    }, [dispatch])
+        dispatch(detailsProduct(productId));
+    }, [dispatch]);
+
+    const handleAddToCart = () => {
+        history.push("/cart/" + productId + '?qty' + qty);
+    }
 
     return (
         <div className="product-page">
@@ -52,18 +58,21 @@ const ProductScreen = ({match}) => {
                             Price : {productDetailsFromRedux.price}
                         </li>
                         <li>
-                            Status : {productDetailsFromRedux.status}
+                            Status : {productDetailsFromRedux.countInStock > 0 ? 'In Stock' : 'Unavailable !'}
                         </li>
                         <li>
-                            Quantity : <select>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
+                            Quantity : <select value={qty} onChange={(event) => {setQty(event.target.value)}}>
+                                {[...Array(productDetailsFromRedux.countInStock).keys()].map((quantity) => 
+                                    <option value={quantity + 1} key={quantity + 1} >{quantity + 1}</option>
+                                )}
                             </select>
                         </li>
                         <li>
-                            <button className="buttonAddToCart">Add to the shoplist</button>
+                            {productDetailsFromRedux.countInStock > 0 ? 
+                            <button className="buttonAddToCart" onClick={handleAddToCart}>Add to the shoplist</button> : 
+                            <button className="buttonAddToCart" disabled>Out of stock !</button>
+                            }
+                            
                         </li>
                     </ul>
                     
@@ -71,7 +80,7 @@ const ProductScreen = ({match}) => {
 
                 
             </div>)
-            };
+            }
     
          </div>
     )

@@ -10,8 +10,9 @@ const data = {
             category: 'Tshirt',
             price: 60,
             brand: 'One Piece',
-            rating: 4.5,
-            numberReviews: 10
+            rating: 4.3,
+            numberReviews: 10,
+            countInStock: 15
         },
 
         {
@@ -21,8 +22,9 @@ const data = {
             category: 'Tshirt',
             price: 79,
             brand: 'One Piece',
-            rating: 4.5,
-            numberReviews: 10
+            rating: 2.5,
+            numberReviews: 10,
+            countInStock: 0,
         },
         
         {
@@ -33,7 +35,8 @@ const data = {
             price: 99,
             brand: 'One Piece',
             rating: 4.5,
-            numberReviews: 10
+            numberReviews: 10,
+            countInStock: 9
         },
         
         {
@@ -43,8 +46,9 @@ const data = {
             category: 'Tshirt',
             price: 99,
             brand: 'One Piece',
-            rating: 4.5,
-            numberReviews: 10
+            rating: 1.5,
+            numberReviews: 10,
+            countInStock: 11
         },
 
         {
@@ -52,10 +56,11 @@ const data = {
             name: 'Sanji',
             image : '/pictures/Luffy.jpg',
             category: 'Tshirt',
-            price: 99,
+            price: 19,
             brand: 'One Piece',
-            rating: 4.5,
-            numberReviews: 10
+            rating: 2.5,
+            numberReviews: 10,
+            countInStock: 5
         },
     ]
 }
