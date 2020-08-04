@@ -16,7 +16,7 @@ const ProductScreen = ({match, history}) => {
     }, [dispatch]);
 
     const handleAddToCart = () => {
-        history.push("/cart/" + productId + '?qty' + qty);
+        history.push("/cart/" + productId + '?qty=' + qty);
     }
 
     return (
