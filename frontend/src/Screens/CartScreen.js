@@ -20,7 +20,7 @@ const CartScreen = ({match, location}) => {
 
     return <div className='cart'>
         <div className="cart-list">
-            <ul>
+            <ul className="cart-list-container">
                 <li>
                     <h3>
                         Shopping Cart
@@ -33,8 +33,10 @@ const CartScreen = ({match, location}) => {
                     cartItems.lenght === 0 ? 
                     <div>Cart is empty</div> : 
                     cartItems.map(item => 
-                        <div>   
-                            <img alt={item.name} src={item.image} />
+                        <li key={item._id}>
+                            <div className="cart-image">
+                                <img alt={item.name} src={item.image} /> 
+                            </div>   
 
                             <div className="cart-name">
                                 <div>{item.name}</div>
@@ -52,13 +54,19 @@ const CartScreen = ({match, location}) => {
                                 {item.price}
                             </div>
 
-                        </div>
+                        </li>
                     )
                 }
             </ul>
         </div>
         <div className="cart-action">
-
+            <h3>
+                Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)} items) :
+                $ {cartItems.reduce((a,c) => a + c.price * c.quantity, 0)}
+            </h3>
+            <button className="button primary" disabled={cartItems.lenght === 0}>
+                Proceed to Checkout
+            </button>
         </div>
     </div>
 }
