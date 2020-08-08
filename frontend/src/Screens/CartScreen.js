@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../action/cartActions';
+import { addToCart, removeFromCart } from '../action/cartActions';
 
 const CartScreen = ({match, location}) => {
 
@@ -11,6 +12,11 @@ const CartScreen = ({match, location}) => {
     // To find the quantity, we split after the = signe (for example : 001?qty=4 which means product id 001 with 4 quantities)
     const quantity = location.search ? Number(location.search.split("=")[1]) : 1;
     const dispatch = useDispatch();
+
+    // Remove from Cart button : 
+    const removeFromCartHandler = (productId) => {
+        dispatch(removeFromCart(productId));
+    }
 
     useEffect(() => {
         if(productId) {
@@ -30,28 +36,31 @@ const CartScreen = ({match, location}) => {
                     </div>
                 </li>
                 {
-                    cartItems.lenght === 0 ? 
+                    cartItems.length === 0 ? 
                     <div>Cart is empty</div> : 
                     cartItems.map(item => 
-                        <li key={item._id}>
+                        <li key={item.product}>
                             <div className="cart-image">
                                 <img alt={item.name} src={item.image} /> 
                             </div>   
 
                             <div className="cart-name">
-                                <div>{item.name}</div>
+                                <Link to={`/product/${item.product}`}>{item.name}</Link>
                                 <div>
-                                    Quantity :
-                                    <select>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
+                                    Quantity : 
+                                    <select value={item.quantity} onChange={(event) => addToCart(item.product, event.target.value)}>
+                                        {[...Array(item.countInStock).keys()].map(qty =>
+                                            <option key={qty + 1} value={qty + 1}> {qty + 1} </option>
+                                        )}
                                     </select>
+                                    <button type="button" className="button" onClick={() => removeFromCartHandler(item.product)}>
+                                        Delete
+                                    </button>
                                 </div>
                             </div>
 
                             <div className="cart-price">
-                                {item.price}
+                                {item.price}€
                             </div>
 
                         </li>

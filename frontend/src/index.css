@@ -263,19 +263,19 @@ footer p {
  align-self: center;
 }
 
-.cart .cart-list .cart-list-container li:last-child  {
+.cart .cart-list .cart-list-container li  {
   display: flex;  
   padding: 0.2rem;
 }
 
-.cart .cart-list .cart-list-container li:last-child .cart-image {
+.cart .cart-list .cart-list-container li .cart-image {
   flex: 1 1;
 }
-.cart .cart-list .cart-list-container li:last-child .cart-name {
+.cart .cart-list .cart-list-container li .cart-name {
   flex: 8 1;
   align-self: flex-end;
 }
-.cart .cart-list .cart-list-container li:last-child .cart-price {
+.cart .cart-list .cart-list-container li .cart-price {
   flex: 1 1;
   font-size: 2.5rem;
   text-align: right;
