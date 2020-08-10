@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../action/cartActions';
 
-const CartScreen = ({match, location}) => {
+const CartScreen = ({match, location, history}) => {
 
     const cart = useSelector(state => state.cart);
     const { cartItems } = cart;
@@ -16,6 +16,11 @@ const CartScreen = ({match, location}) => {
     // Remove from Cart button : 
     const removeFromCartHandler = (productId) => {
         dispatch(removeFromCart(productId));
+    };
+
+    // Checkout 
+    const checkoutHandler = () => {
+        history.push("/signin?redirect=shipping");
     }
 
     useEffect(() => {
@@ -48,9 +53,9 @@ const CartScreen = ({match, location}) => {
                                 <Link to={`/product/${item.product}`}>{item.name}</Link>
                                 <div>
                                     Quantity : 
-                                    <select value={item.quantity} onChange={(event) => addToCart(item.product, event.target.value)}>
-                                        {[...Array(item.countInStock).keys()].map(qty =>
-                                            <option key={qty + 1} value={qty + 1}> {qty + 1} </option>
+                                    <select value={item.quantity} onChange={(event) => dispatch(addToCart(item.product, event.target.value))}>
+                                        {[...Array(item.countInStock).keys()].map(quantity =>
+                                            <option key={quantity + 1} value={quantity + 1}> {quantity + 1} </option>
                                         )}
                                     </select>
                                     <button type="button" className="button" onClick={() => removeFromCartHandler(item.product)}>
@@ -73,7 +78,7 @@ const CartScreen = ({match, location}) => {
                 Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)} items) :
                 $ {cartItems.reduce((a,c) => a + c.price * c.quantity, 0)}
             </h3>
-            <button className="button primary" disabled={cartItems.lenght === 0}>
+            <button className="button primary full-width" onClick={checkoutHandler} disabled={cartItems.lenght === 0}>
                 Proceed to Checkout
             </button>
         </div>

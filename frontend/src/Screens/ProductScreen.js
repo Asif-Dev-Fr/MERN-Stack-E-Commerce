@@ -13,7 +13,7 @@ const ProductScreen = ({match, history}) => {
 
     useEffect(()=>{
         dispatch(detailsProduct(productId));
-    }, [dispatch]);
+    }, [dispatch, productId]);
 
     const handleAddToCart = () => {
         history.push("/cart/" + productId + '?qty=' + qty);

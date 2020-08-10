@@ -22,6 +22,10 @@ body {
   height: 100%;
 }
 
+button {
+  font-size: 1.25rem;
+}
+
 /* Header */
 
 header {
@@ -240,6 +244,14 @@ footer p {
   border-radius: 0.5rem;
   padding: 1rem;
   max-height: 120px;
+}
+
+.cart .cart-action .full-width {
+  width: 100%;
+}
+
+.cart .cart-action .full-width:hover {
+  background-color: #18bc9c;
 }
 
 .cart .cart-list .cart-list-container {
